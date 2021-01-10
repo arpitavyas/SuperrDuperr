@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Super Duper ToDo App</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>SupperDupper ToDo</h3>
+    <hr>
+    <!-- Add a button -->
+    <a th:href="@{/addToDo}"
+       class="btn btn-primary btn-sm mb-3">
+        Add New Todo
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Task List</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mytodos : ${todos}">
+            <td th:text="${mytodos.name}" />
+            <td><a th:href="@{/editToDo/{id}(id=${mytodos.listId})}">Edit Title</a></td>
+            <td><a th:href="@{/deleteToDo/{id}(id=${mytodos.listId})}">Delete</a></td>
+            <td><a th:href="@{/viewToDo/{id}(id=${mytodos.listId})}">View Items</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+
+
+

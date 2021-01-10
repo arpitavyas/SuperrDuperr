@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Super Duper ToDo App</title>
+</head>
+
+<body>
+<div class="container">
+    <h3>ToDo Items</h3>
+    <hr>
+    <a th:href="@{/addToDoItem/{id}(id=${listId})}"
+       class="btn btn-primary btn-sm mb-3">
+        Add New Todo Item
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ToDo Items </th>
+            <th>Tag</th>
+            <th>Status</th>
+            <th>To Be Finish By</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="mytodos : ${todoItems}">
+<!--            <td><a th:href="@{/viewToDo/{id}(id=${mytodos.listId})}">${mytodos.name}</a></td>-->
+
+            <td th:text="${mytodos.itemName}" />
+            <td><th:block th:each="iterator : ${mytodos.tags}">
+                <p th:text=${iterator.tagName}></p>
+            </th:block></td>
+            <td th:text="${mytodos.itemStatus}" />
+            <td th:text="${mytodos.itemDueDate}" />
+            <td><a th:href="@{list/{listid}/editToDoItem/{id}(id=${mytodos.item_id},listid=${listId})}">Restore/Change Item</a></td>
+            <td><a th:href="@{list/{listid}/deleteToDoItem/{id}(id=${mytodos.item_id},listid=${listId})}">Delete Item</a></td>
+            <td><a th:href="@{list/{listid}/addTagToDoItem/{id}(id=${mytodos.item_id},listid=${listId})}">Add Tag</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/SuperDuperApp}">Back to ToDo List</a>
+</div>
+
+</body>
+</html>
+
+
+
+
+
